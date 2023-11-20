@@ -1,12 +1,16 @@
 resource "aws_iam_user" "ci_user" {
   name = "${var.name}-${data.aws_region.current.name}"
-  path = "/"
+  path = var.path
   tags = merge(var.tags, {})
   lifecycle {
     ignore_changes = [
       tags
     ]
   }
+}
+
+resource "aws_iam_access_key" "this" {
+  user = aws_iam_user.ci-user.name
 }
 
 resource "aws_iam_policy" "ci_user" {
@@ -266,7 +270,7 @@ resource "aws_secretsmanager_secret" "ci_user" {
 resource "aws_secretsmanager_secret_version" "this" {
   # this just creates the initial format of the secret, the secret value needs to be filled in later
   secret_id     = aws_secretsmanager_secret.ci_user.id
-  secret_string = jsonencode({ "AWS_ACCESS_KEY_ID" = "CHANGEME", "AWS_SECRET_ACCESS_KEY" = "CHANGEME", "AWS_DEFAULT_REGION" = data.aws_region.current.name })
+  secret_string = jsonencode({ "AWS_ACCESS_KEY_ID" = "${aws_iam_access_key.this.id}", "AWS_SECRET_ACCESS_KEY" = "${aws_iam_access_key.this.secret}", "AWS_DEFAULT_REGION" = data.aws_region.current.name })
   lifecycle {
     ignore_changes = all
   }

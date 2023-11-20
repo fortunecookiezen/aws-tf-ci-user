@@ -12,7 +12,7 @@ _CAUTION_ Because this module stores the key in an aws secretsmanager secret, it
 ## Usage
 ```hcl
 module "ci_user" {
-  source = "../../modules/ci-user"
+  source = "github.com/fortunecookiezen/aws-tf-ci-user"
   name   = "ci-user"
   path   = "/ci/"
   tags = {

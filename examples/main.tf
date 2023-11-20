@@ -1,5 +1,5 @@
 module "ci_user" {
-  source = "../../modules/ci-user"
+  source = "github.com/fortunecookiezen/aws-tf-ci-user"
   name   = "ci-user"
   path   = "/ci/"
   tags = {

@@ -140,6 +140,7 @@ resource "aws_iam_policy" "ci_user" {
             "globalaccelerator:*",
             "glue:*",
             "grafana:*",
+            "guardduty:*"
             "health:*",
             "iam:*",
             "identitystore-auth:*",

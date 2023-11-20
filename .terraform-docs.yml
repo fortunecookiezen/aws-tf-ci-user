@@ -1,0 +1,28 @@
+formatter: markdown table
+output:
+  file: README.md
+  mode: inject
+content: |-
+  {{ .Header }}
+
+  ## Usage
+  ```hcl
+  {{ include "examples/main.tf" }}
+  ```
+
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  {{ .Modules }}
+
+  {{ .Inputs }}
+
+  {{ .Resources }}
+
+  {{ .Outputs }}
+
+  ## Release Notes
+  ```hcl
+  {{ include "RELEASE.txt"}}
+  ```

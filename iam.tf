@@ -10,7 +10,7 @@ resource "aws_iam_user" "ci_user" {
 }
 
 resource "aws_iam_access_key" "this" {
-  user = aws_iam_user.ci-user.name
+  user = aws_iam_user.ci_user.name
 }
 
 resource "aws_iam_policy" "ci_user" {

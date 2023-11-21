@@ -13,12 +13,12 @@ resource "aws_iam_access_key" "this" {
   user = aws_iam_user.ci_user.name
 }
 
-#tfsec:ignore:aws-iam-no-policy-wildcards
 # we know this is a risky iam policy
 resource "aws_iam_policy" "ci_user" {
   name        = "${var.name}-${data.aws_region.current.name}-policy"
   path        = "/"
   description = "iam policy for ci-user"
+  #tfsec:ignore:aws-iam-no-policy-wildcards
   policy = jsonencode(
     {
       Version = "2012-10-17"

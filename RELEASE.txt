@@ -1,0 +1,2 @@
+1.0 
+Initial release of module. Future plans may be to restrict this user to PowerUser managed role.

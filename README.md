@@ -25,13 +25,13 @@ module "ci_user" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~>4.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~>4.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >4.0 |
 
 ## Modules
 
@@ -67,6 +67,7 @@ No modules.
 
 ## Release Notes
 ```hcl
-
+1.0 
+Initial release of module. Future plans may be to restrict this user to PowerUser managed role.
 ```
 <!-- END_TF_DOCS -->

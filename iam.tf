@@ -1,5 +1,5 @@
 resource "aws_iam_user" "ci_user" {
-  name = "${var.name}-${data.aws_region.current.name}"
+  name = "${var.name}-${data.aws_region.current.id}"
   path = var.path
   tags = merge(var.tags, {})
 }
@@ -10,9 +10,9 @@ resource "aws_iam_access_key" "this" {
 
 # we know this is a risky iam policy
 resource "aws_iam_policy" "ci_user" {
-  name        = "${var.name}-${data.aws_region.current.name}-policy"
+  name        = "${var.name}-${data.aws_region.current.id}-policy"
   path        = "/"
-  description = "iam policy for ${var.name}-${data.aws_region.current.name}-user"
+  description = "iam policy for ${var.name}-${data.aws_region.current.id}-user"
   #tfsec:ignore:aws-iam-no-policy-wildcards
   policy = var.ci_user_policy_document != "" ? var.ci_user_policy_document : data.aws_iam_policy_document.default.json
   tags   = merge(var.tags, {})
@@ -256,7 +256,7 @@ resource "aws_iam_policy_attachment" "ci_user" {
 }
 
 resource "aws_secretsmanager_secret" "ci_user" {
-  name                    = "${var.name}-${data.aws_region.current.name}-user-key"
+  name                    = "${var.name}-${data.aws_region.current.id}-user-key"
   description             = "access key for ci-user"
   kms_key_id              = var.kms_key_id != "" ? var.kms_key_id : ""
   recovery_window_in_days = 30
@@ -265,5 +265,5 @@ resource "aws_secretsmanager_secret" "ci_user" {
 
 resource "aws_secretsmanager_secret_version" "this" {
   secret_id     = aws_secretsmanager_secret.ci_user.id
-  secret_string = jsonencode({ "AWS_ACCESS_KEY_ID" = "${aws_iam_access_key.this.id}", "AWS_SECRET_ACCESS_KEY" = "${aws_iam_access_key.this.secret}", "AWS_DEFAULT_REGION" = data.aws_region.current.name })
+  secret_string = jsonencode({ "AWS_ACCESS_KEY_ID" = "${aws_iam_access_key.this.id}", "AWS_SECRET_ACCESS_KEY" = "${aws_iam_access_key.this.secret}", "AWS_DEFAULT_REGION" = data.aws_region.current.id })
 }

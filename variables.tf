@@ -1,3 +1,8 @@
+variable "ci_user_policy_document" {
+  type        = string
+  default     = ""
+  description = "(Optional) json iam policy document describing permissions for ci user"
+}
 variable "name" {
   type        = string
   default     = "ci-user"

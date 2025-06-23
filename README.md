@@ -41,6 +41,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_ci_user_policy_document"></a> [ci\_user\_policy\_document](#input\_ci\_user\_policy\_document) | (Optional) json iam policy document describing permissions for ci user | `string` | `""` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | (Optional) ARN or Id of the AWS KMS key to be used to encrypt the secret values in the versions stored in this secret. | `string` | `""` | no |
 | <a name="input_name"></a> [name](#input\_name) | name for the ci-user, defaults to ci-user | `string` | `"ci-user"` | no |
 | <a name="input_path"></a> [path](#input\_path) | path for the ci-user, defaults to / | `string` | `"/"` | no |
@@ -56,6 +57,7 @@ No modules.
 | [aws_iam_user.ci_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
 | [aws_secretsmanager_secret.ci_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
 | [aws_secretsmanager_secret_version.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
+| [aws_iam_policy_document.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Outputs

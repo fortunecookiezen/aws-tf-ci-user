@@ -256,7 +256,7 @@ resource "aws_iam_policy_attachment" "ci_user" {
 }
 
 resource "aws_iam_policy_attachment" "managed_policy" {
-  for_each   = var.managed_policy_arns
+  for_each   = toset(var.managed_policy_arns)
   name       = "${aws_iam_user.ci_user.name}-${each.value}-policy"
   users      = [aws_iam_user.ci_user.name]
   policy_arn = each.value

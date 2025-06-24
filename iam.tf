@@ -255,6 +255,13 @@ resource "aws_iam_policy_attachment" "ci_user" {
   policy_arn = aws_iam_policy.ci_user.arn
 }
 
+resource "aws_iam_policy_attachment" "managed_policy" {
+  for_each   = var.managed_policy_arns
+  name       = "${aws_iam_user.ci_user.name}-${each.value}-policy"
+  users      = [aws_iam_user.ci_user.name]
+  policy_arn = each.value
+}
+
 resource "aws_secretsmanager_secret" "ci_user" {
   name                    = "${var.name}-${data.aws_region.current.id}-user-key"
   description             = "access key for ci-user"

@@ -3,6 +3,11 @@ variable "ci_user_policy_document" {
   default     = ""
   description = "(Optional) json iam policy document describing permissions for ci user"
 }
+variable "managed_policy_arns" {
+  type        = list(string)
+  default     = []
+  description = "(Optional) list of managed policy ARNs to attach to the ci user"
+}
 variable "name" {
   type        = string
   default     = "ci-user"

@@ -15,6 +15,15 @@ module "ci_user" {
   source = "github.com/fortunecookiezen/aws-tf-ci-user"
   name   = "ci-user"
   path   = "/ci/"
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser",
+    "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess",
+    "arn:aws:iam::aws:policy/AWSCodePipelineFullAccess",
+    "arn:aws:iam::aws:policy/AWSCloudFormationFullAccess",
+    "arn:aws:iam::aws:policy/AWSLambda_FullAccess",
+    "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+    "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+  ]
   tags = {
     Environment = "nonprod"
   }
@@ -43,6 +52,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_ci_user_policy_document"></a> [ci\_user\_policy\_document](#input\_ci\_user\_policy\_document) | (Optional) json iam policy document describing permissions for ci user | `string` | `""` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | (Optional) ARN or Id of the AWS KMS key to be used to encrypt the secret values in the versions stored in this secret. | `string` | `""` | no |
+| <a name="input_managed_policy_arns"></a> [managed\_policy\_arns](#input\_managed\_policy\_arns) | (Optional) list of managed policy ARNs to attach to the ci user | `list(string)` | `[]` | no |
 | <a name="input_name"></a> [name](#input\_name) | name for the ci-user, defaults to ci-user | `string` | `"ci-user"` | no |
 | <a name="input_path"></a> [path](#input\_path) | path for the ci-user, defaults to / | `string` | `"/"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | common tags to use for all resources | `map(string)` | `{}` | no |
@@ -54,6 +64,7 @@ No modules.
 | [aws_iam_access_key.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key) | resource |
 | [aws_iam_policy.ci_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_policy_attachment.ci_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment) | resource |
+| [aws_iam_policy_attachment.managed_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment) | resource |
 | [aws_iam_user.ci_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
 | [aws_secretsmanager_secret.ci_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
 | [aws_secretsmanager_secret_version.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |

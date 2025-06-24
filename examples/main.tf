@@ -6,7 +6,7 @@ module "ci_user" {
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser",
     "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess",
-    "arn:aws:iam::aws:policy/AWSCodePipelineFullAccess",
+    "arn:aws:iam::aws:policy/AWSCodePipeline_FullAccess",
     "arn:aws:iam::aws:policy/AWSCloudFormationFullAccess",
     "arn:aws:iam::aws:policy/AWSLambda_FullAccess",
     "arn:aws:iam::aws:policy/AmazonS3FullAccess",
